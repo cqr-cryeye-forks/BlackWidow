@@ -8,6 +8,8 @@ from urlparse import urlparse
 import requests, sys, os, atexit, optparse
 from Cookie import SimpleCookie
 requests.packages.urllib3.disable_warnings()
+import os
+
 
 OKBLUE='\033[94m'
 OKRED='\033[91m'
@@ -300,8 +302,9 @@ else:
         port = port
         #print "port is: " + port
 
-  save_dir = "/usr/share/blackwidow/" + domain + "_" + port + "/"
-  os.system('mkdir -p ' + save_dir + ' 2>/dev/null')
+  ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
+
+  save_dir = str(ROOT_PATH) + domain + "_" + port + "/"
   atexit.register(exit_handler)
 
 
